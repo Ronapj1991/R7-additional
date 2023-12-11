@@ -7,4 +7,11 @@
   <%= link_to "Back to customers", customers_path %>
 
   <%= button_to "Destroy this customer", @customer, method: :delete %>
+  
+  <% title_num = 1 %>
+  <% @customer.order.each do |o| %>
+    <h3>Order <%= "#{title_num}" %></h3>
+    <%= render o %>
+    <% title_num += 1 %>
+  <% end %>
 </div>
