@@ -1,17 +1,17 @@
-<p style="color: green"><%= notice %></p>
-
 <%= render @customer %>
 
 <div>
-  <%= link_to "Edit this customer", edit_customer_path(@customer) %> |
-  <%= link_to "Back to customers", customers_path %>
-
-  <%= button_to "Destroy this customer", @customer, method: :delete %>
+  <%= link_to "Edit this customer", edit_customer_path(@customer), class: "btn btn-primary" %> |
+  <%= link_to "Back to customers", customers_path, class: "btn btn-primary" %> |
+  <%= link_to "Delete Customer", @customer, class: "btn btn-danger", method: :delete %>
   
-  <% title_num = 1 %>
-  <% @customer.order.each do |o| %>
-    <h3>Order <%= "#{title_num}" %></h3>
-    <%= render o %>
-    <% title_num += 1 %>
-  <% end %>
+  
+  <div class="mt-5">
+    <% title_num = 1 %>
+    <% @customer.order.each do |o| %>
+      <h3>Order <%= "#{title_num}" %></h3>
+      <%= render o %>
+      <% title_num += 1 %>
+    <% end %>
+  </div>
 </div>

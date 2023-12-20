@@ -1,17 +1,14 @@
 <div id="<%= dom_id order %>">
-  <p>
-    <strong>Product Name:</strong>
+  <p class="card-header">
     <%= order.product_name %>
   </p>
 
-  <p>
-    <strong>Order Count:</strong>
-    <%= order.product_count %>
+  <p class="card-body">
+    <%= order.customer.full_name %> is buying <%= order.product_count %>
   </p>
   
-  <p>
-    <strong>Customer:</strong>
-    <%= order.customer.full_name %>
+  <p class="card-footer">
+    <%= link_to "Edit", edit_order_path(order), class: 'btn btn-primary' %> |
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-<%= order.id%>">Delete</button>
   </p>
-
 </div>

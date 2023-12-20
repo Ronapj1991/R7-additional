@@ -1,14 +1,36 @@
-<p style="color: green"><%= notice %></p>
-
 <h1>Customers</h1>
 
-<div id="customers">
-  <% @customers.each do |customer| %>
-    <%= render customer %>
-    <p>
-      <%= link_to "Show this customer", customer %>
-    </p>
-  <% end %>
-</div>
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>Number of Orders</th>
+    <th colspan="3"></th>
+  </tr>
+  
+  <tr>
+    <% @customers.each do |customer| %>
+    <tr>
+      <%= render partial: "customers/deleteModal", locals: {customer: customer} %>
 
-<%= link_to "New customer", new_customer_path %>
+      <td><%= customer.full_name %></td>
+      <td><%= customer.order.count %></td>
+      <td><%= link_to "Show", customer, { class: 'btn btn-primary'} %></td>
+      <td><%= link_to "Edit", edit_customer_path(customer), { class: 'btn btn-primary'}  %></td>
+      <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal-<%= customer.id %>">Delete</button></td>
+    </tr>
+    <% end %>
+  </tr>
+</table>
+
+
+
+<!--<div id="customers">-->
+<!--  <% @customers.each do |customer| %>-->
+<!--    <%= render customer %>-->
+<!--    <p>-->
+<!--      <%= link_to "Show this customer", customer %>-->
+<!--    </p>-->
+<!--  <% end %>-->
+<!--</div>-->
+
+<!--<%= link_to "New customer", new_customer_path %>-->

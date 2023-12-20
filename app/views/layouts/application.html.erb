@@ -11,9 +11,21 @@
   </head>
 
   <body>
+    <div class="mt-4 p-5 bg-primary text-white rounded banner-background">
+      <h1>Customers and Orders</h1>
+      <p>This is a sample application that associates orders with customers</p>
+    </div>
+    
     <% if flash[:alert].present? %>
-      <p class="my_alert"><%= flash[:alert] %></p>
+      <p class="my_alert alert alert-danger" role="alert"><%= flash[:alert] %></p>
+    <% elsif flash[:notice].present? %>
+      <p class="alert alert-success" role="alert"><%= flash[:notice] %></p>
     <% end %>
-    <%= yield %>
+    
+    <%= render partial: "layouts/navbar" %>
+    
+    <div class="container-fluid">
+      <%= yield %>
+    </div>
   </body>
 </html>
