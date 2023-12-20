@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
   skip_before_action :verify_authenticity_token
   rescue_from ActiveRecord::RecordNotFound, with: :catch_not_found
-  before_action :set_customer, only: %i[ show edit update destroy ]
+  before_action :set_customer, only: %i[ show edit update destroy destroy_with_orders ]
 
   # GET /customers or /customers.json
   def index
@@ -75,9 +75,19 @@ class CustomersController < ApplicationController
     end
     
     respond_to do |format|
-      format.html { redirect_to customers_url, notice: "Customer was successfully destroyed." }
+      format.html { redirect_to customers_url }
       format.json { head :no_content }
     end
+  end
+  
+  def destroy_with_orders
+    if (@customer.order.exists?)
+      @customer.order.destroy_all
+    end
+    
+    @customer.destroy
+    flash.notice = "The customer record and all related order records were successfully deleted"
+    redirect_to customers_url
   end
 
   private

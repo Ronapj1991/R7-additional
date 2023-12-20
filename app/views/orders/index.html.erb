@@ -1,11 +1,13 @@
 <h1>Orders</h1>
 
-<div id="orders">
+<div id="orders" class="container-fluid  row">
     <% @orders.each do |order| %>
-        <%= render order %>
-        <p>
-            <%= link_to "Show this order", order %>
-        </p>
+        <div class="col-sm">
+            <div class="card border border-2 border-success p-1 mt-3" style="max-width: 18rem;">
+                <%= render partial: "orders/deleteModal", locals: {order: order} %>
+                <%= render order %>
+            </div>
+        </div>
     <% end %>
 </div>
 
