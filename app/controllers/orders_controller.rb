@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
         @order = Order.new(order_params)
         if @order.save
             flash.notice = "The order was created successfully"
-            redirect_to @order
+            redirect_to orders_url
         else
             render :new, status: :unprocessable_entity
         end

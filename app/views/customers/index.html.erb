@@ -9,9 +9,9 @@
   
   <tr>
     <% @customers.each do |customer| %>
+    <%= render partial: "customers/deleteModal", locals: {customer: customer} %>
+    
     <tr>
-      <%= render partial: "customers/deleteModal", locals: {customer: customer} %>
-
       <td><%= customer.full_name %></td>
       <td><%= customer.order.count %></td>
       <td><%= link_to "Show", customer, { class: 'btn btn-primary'} %></td>

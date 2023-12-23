@@ -1,8 +1,14 @@
-<%= render @order %>
+<div class="card border border-2 border-success p-1 mt-3" style="max-width: 18rem;">
+  <p class="card-header">
+    <%= @order.product_name %>
+  </p>
 
-<div>
-  <%= link_to "Edit this order", edit_order_path(@order) %> |
-  <%= link_to "Back to orders", orders_path %>
-
-  <%= button_to "Destroy this order", @order, method: :delete %>
+  <p class="card-body">
+    <%= @order.customer.full_name %> is buying <%= @order.product_count %>
+  </p>
+  
+  <p class="card-footer">
+    <%= link_to "Edit", edit_order_path(@order), class: 'btn btn-primary' %> |
+    <%= link_to "Return", orders_url, class: 'btn btn-primary' %>
+  </p>
 </div>
